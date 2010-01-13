@@ -3,10 +3,10 @@
 This is a short program that acts like "grep," but treats its input as a
 outline based on indentation, and preserves this structure in its output.
 
-> import Data.Char
-> import IO
-> import System
-> import Text.Regex.Posix
+> import Data.Char (isSpace)
+> import IO (Handle, hGetContents, openFile, IOMode(ReadMode), stdin)
+> import System (getArgs)
+> import Text.Regex.Posix ((=~))
 
 An outline has three parts: The first node, its children (another outline),
 and the remaining nodes (also an outline).  The outline with zero nodes is
