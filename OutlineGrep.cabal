@@ -7,7 +7,6 @@ Author:              Matt Brubeck
 Maintainer:          mbrubeck@limpet.net
 Build-Type:          Simple
 Cabal-Version:       >=1.2
-Data-Files:          compleat_setup
 Executable ogrep
   Main-is:           OutlineGrep.lhs
   Build-Depends:     base >= 3 && < 5, haskell98, regex-posix
