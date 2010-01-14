@@ -23,7 +23,7 @@ then `ogrep work input.txt` will produce the following output:
       New Year's Day!
         No work today.
     2009-01-04
-      Back to work...
+      Back to work.
 
 Installation
 ------------
