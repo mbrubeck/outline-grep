@@ -5,6 +5,8 @@ outline based on indentation, and preserves this structure in its output.
 
 > import Control.Monad ((<=<), liftM)
 > import Data.Char (isSpace)
+> import Data.Foldable (Foldable, foldMap, toList)
+> import Data.Monoid (mappend, mempty)
 > import IO (Handle, hGetContents, openFile, IOMode(ReadMode), stdin)
 > import System (getArgs)
 > import Text.Regex.Posix ((=~))
@@ -14,6 +16,12 @@ and the remaining nodes (also an outline).  The outline with zero nodes is
 called Empty.  An outline is basically a list of trees.
 
 > data Outline a = Empty | Outline a (Outline a) (Outline a)
+
+We define a fold method for outlines, so we can iterate over their elements.
+
+> instance Foldable Outline where
+>     foldMap f Empty = mempty
+>     foldMap f (Outline a b c) = f a `mappend` foldMap f b `mappend` foldMap f c
 
 This helper function tells if an outline is empty.
 
@@ -47,12 +55,7 @@ To print an outline, we just turn it into a list and print each line.
 (Indentation is preserved by the readOutline function.)
 
 > prettyPrint :: Outline String -> String
-> prettyPrint = unlines . flatten
-> 
-> flatten :: Outline a -> [a]
-> flatten Empty = []
-> flatten (Outline root children rest) =
->     root : flatten children ++ flatten rest
+> prettyPrint = unlines . toList
 
 To prune an outline, we remove any subtree that contains no matching nodes.
 This leaves the matching nodes and all their ancestors.
