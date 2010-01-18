@@ -3,6 +3,7 @@
 This is a short program that acts like "grep," but treats its input as a
 outline based on indentation, and preserves this structure in its output.
 
+> import Control.Monad ((<=<), liftM)
 > import Data.Char (isSpace)
 > import IO (Handle, hGetContents, openFile, IOMode(ReadMode), stdin)
 > import System (getArgs)
@@ -71,15 +72,11 @@ outline using the regex, and prints the result.
 
 > main = do
 >     (pattern:fileNames) <- getArgs
->     handle <- input fileNames
->     s <- hGetContents handle
->     let o  = readOutline s
->     let o' = prune (=~ pattern) o
->     putStr $ prettyPrint o'
+>     s <- input fileNames
+>     putStr $ prettyPrint $ prune (=~ pattern) $ readOutline s
 
-Note: Only the single filename is used; remaining arguments are ignored.
-(I should fix this.)
+We concanenate all the named files, or read from stdin if there are none.
 
-> input :: [String] -> IO Handle
-> input []   = return stdin
-> input args = openFile (head args) ReadMode
+> input :: [String] -> IO String
+> input []   = hGetContents stdin
+> input args = concat `liftM` mapM (hGetContents <=< openFile `flip` ReadMode) args
