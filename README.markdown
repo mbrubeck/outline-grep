@@ -35,6 +35,9 @@ OS X or Windows users, download the [Haskell Platform][1].  (Mac OS X 10.6 may
 require a [workaround][2] for 64-bit compatibility.)  Then type `cabal
 install`.
 
+[1]: http://hackage.haskell.org/platform/
+[2]: http://www.haskell.org/haskellwiki/Mac_OS_X
+
 Debian/Ubuntu users, run: `sudo aptitude install libghc6-regex-posix-dev`,
 then run:
 
