@@ -78,7 +78,7 @@ outline using the regex, and prints the result.
 >     s <- input fileNames
 >     putStr $ prettyPrint $ prune (=~ pattern) $ readOutline s
 
-We concanenate all the named files, or read from stdin if there are none.
+We concatenate all the named files, or read from stdin if there are none.
 
 > input :: [String] -> IO String
 > input []   = hGetContents stdin
