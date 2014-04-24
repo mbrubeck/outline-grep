@@ -9,4 +9,4 @@ Build-Type:          Simple
 Cabal-Version:       >=1.2
 Executable ogrep
   Main-is:           OutlineGrep.lhs
-  Build-Depends:     base >= 3 && < 5, haskell98, regex-posix
+  Build-Depends:     base >= 4, regex-posix

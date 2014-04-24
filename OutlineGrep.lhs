@@ -7,8 +7,8 @@ outline based on indentation, and preserves this structure in its output.
 > import Data.Char (isSpace)
 > import Data.Foldable (Foldable, foldMap, toList)
 > import Data.Monoid (mappend, mempty)
-> import IO (Handle, hGetContents, openFile, IOMode(ReadMode), stdin)
-> import System (getArgs)
+> import System.IO (Handle, hGetContents, openFile, IOMode(ReadMode), stdin)
+> import System.Environment (getArgs)
 > import Text.Regex.Posix ((=~))
 
 An outline has three parts: The first node, its children (another outline),
