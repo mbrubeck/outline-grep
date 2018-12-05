@@ -58,16 +58,17 @@ To print an outline, we just turn it into a list and print each line.
 > prettyPrint = unlines . toList
 
 To prune an outline, we remove any subtree that contains no matching nodes.
-This leaves the matching nodes and all their ancestors.
+This leaves the matching nodes and all their ancestors and children.
 
 > prune :: (a -> Bool) -> Outline a -> Outline a
 > prune p Empty = Empty
 > prune p (Outline root children rest) =
->     let rest'     = prune p rest
->         children' = prune p children in
->     if p root || not (empty children')
->         then (Outline root children' rest')
->         else rest'
+>     let rest' = prune p rest in
+>     if p root then (Outline root children rest')
+>     else
+>         let children' = prune p children in
+>         if empty children' then rest'
+>         else (Outline root children' rest')
 
 Our main program takes a regex as its first argument, and reads an outline
 from the file named by the second argument (default stdin).  It prunes the
