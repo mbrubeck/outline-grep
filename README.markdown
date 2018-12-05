@@ -36,7 +36,7 @@ install`.
 
 [1]: http://hackage.haskell.org/platform/
 
-Debian/Ubuntu users, run: `sudo aptitude install libghc6-regex-posix-dev`,
+Debian/Ubuntu users, run: `sudo apt install libghc-regex-posix-dev`,
 then run:
 
     ./Setup.lhs configure
