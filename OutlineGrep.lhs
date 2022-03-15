@@ -34,7 +34,7 @@ counts the same as a space, so you may not want to mix tabs and spaces.
 > indentLevel :: String -> Int
 > indentLevel = length . takeWhile isSpace
 
-readNodes reads a serious of nodes starting at a specified column.  It returns
+readNodes reads a series of nodes starting at a specified column.  It returns
 the nodes as an outline, along with any remaining lines.
 
 > readNodes :: Int -> [String] -> (Outline String, [String])
